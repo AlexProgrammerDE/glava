@@ -180,23 +180,6 @@ if not get_option('disable_config')
   endif
 endif
 
-if not get_option('disable_obs')
-  shared_library(
-    'glava-obs',
-	install:     true,
-    install_dir: get_option('obs_plugin_install_dir'),
-    sources:     'glava-obs/entry.c',
-    link_with:   libglava,
-    c_args:      '-I/usr/include/obs',
-    dependencies: [
-	  dependency('threads'),
-	  cc.find_library('GL'),
-	  cc.find_library('X11'),
-      cc.find_library('obs'),
-	  cc.find_library('dl')
-	])
-endif
-
 install_subdir('shaders/glava', install_dir: shader_dir)
 install_subdir('resources', install_dir: resource_dir)
 install_headers('glava/glava.h')
